@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --neon-pink: #ff00cc;
+    --neon-blue: #00fff7;
+    --neon-purple: #8f00ff;
+    --neon-green: #00ff90;
+    --bg-dark: #18191a;
+    --card-bg: rgba(30, 32, 43, 0.92);
+    --text-main: #d0d0e1;
+    --text-glow: #ffffff;
+    --shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-blue);
+}
+
+body {
+    background: linear-gradient(135deg, #18191a 60%, #2e0066 100%);
+    color: var(--text-main);
+    font-family: 'Share Tech Mono', 'Consolas', 'monospace';
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.neon-border {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    pointer-events: none;
+    border: 4px solid var(--neon-pink);
+    box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-pink);
+    border-radius: 14px;
+    margin: 8px;
+}
+
+header {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+}
+
+.header-content {
+    display: inline-block;
+    background: linear-gradient(90deg, #1a1935 60%, #3e0066 100%);
+    border-radius: 12px;
+    padding: 28px 36px;
+    box-shadow: 0 0 20px var(--neon-purple);
+    border: 2px solid var(--neon-blue);
+}
+
+h1, .glitch {
+    font-family: 'Orbitron', 'Share Tech Mono', monospace;
+    font-size: 2.6rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 6px var(--neon-blue), 0 0 18px var(--neon-pink);
+    position: relative;
+    letter-spacing: 2px;
+}
+
+.glitch {
+    animation: glitch 1.2s infinite;
+}
+
+@keyframes glitch {
+    0% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink);}
+    20% { text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-blue);}
+    40% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink);}
+    60% { text-shadow: -2px 2px var(--neon-pink), 2px -2px var(--neon-blue);}
+    80% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink);}
+    100% { text-shadow: 0 0 6px var(--neon-blue), 0 0 18px var(--neon-pink);}
+}
+
+.cyber-contact, .cyber-link {
+    color: var(--neon-green);
+    text-shadow: 0 0 6px var(--neon-green);
+    letter-spacing: 1px;
+    font-size: 1rem;
+}
+.cyber-link {
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.cyber-link:hover {
+    color: var(--neon-pink);
+}
+
+main {
+    width: 98%;
+    max-width: 888px;
+    margin: 0 auto 50px auto;
+    z-index: 2;
+    position: relative;
+}
+
+.section-title {
+    color: var(--neon-blue);
+    text-shadow: 0 0 12px var(--neon-blue);
+    border-left: 4px solid var(--neon-pink);
+    padding-left: 12px;
+    margin-top: 36px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--neon-purple);
+    border-radius: 10px;
+    box-shadow: 0 0 16px var(--neon-blue);
+    margin: 18px 0;
+    padding: 18px 28px 14px 28px;
+    font-size: 1.06rem;
+    transition: box-shadow 0.3s;
+}
+.card:hover {
+    box-shadow: 0 0 32px var(--neon-pink), 0 0 12px var(--neon-blue);
+}
+
+.skill-card {
+    color: var(--neon-green);
+    text-shadow: 0 0 6px var(--neon-green);
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.card ul li {
+    margin-bottom: 6px;
+    padding-left: 16px;
+    position: relative;
+}
+.card ul li:before {
+    content: '▸';
+    color: var(--neon-pink);
+    position: absolute;
+    left: 0;
+}
+
+.date {
+    color: var(--neon-blue);
+    text-shadow: 0 0 6px var(--neon-blue);
+    font-size: 0.95rem;
+    float: right;
+}
+
+.glow {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-blue);
+}
+.footer-glow {
+    color: var(--neon-purple);
+    text-align: center;
+    font-size: 1.03rem;
+    margin-top: 32px;
+    text-shadow: 0 0 8px var(--neon-purple);
+}
+.cyber-heart {
+    color: var(--neon-pink);
+    text-shadow: 0 0 12px var(--neon-pink);
+}
+
+@media (max-width: 700px) {
+    .header-content, main {
+        padding: 10px;
+        width: 96vw;
+        font-size: 0.97rem;
+    }
+    .neon-border { margin: 2px; }
+}
