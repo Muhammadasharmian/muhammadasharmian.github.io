@@ -38,8 +38,20 @@
     </div>
     <div id="taskbar-space"></div>
     <div id="taskbar-clock">
-      <span id="time">2:27 AM</span>
+      <span id="time"></span>
     </div>
   </div>
+  <script>
+    function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
 </body>
 </html>
