@@ -1,171 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashar Mian | 3D Interactive Resume</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="assets/cyberpunk-favicon.png"/>
+  <meta name="description" content="3D interactive resume of Muhammad (Ashar) Mian: education, experience, projects, and contact."/>
+</head>
+<body>
+  <div class="neon-border"></div>
 
-:root {
-    --neon-pink: #ff00cc;
-    --neon-blue: #00fff7;
-    --neon-purple: #8f00ff;
-    --neon-green: #00ff90;
-    --bg-dark: #18191a;
-    --card-bg: rgba(30, 32, 43, 0.92);
-    --text-main: #d0d0e1;
-    --text-glow: #ffffff;
-    --shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-blue);
-}
+  <!-- About Me Overlay -->
+  <header class="about-overlay">
+    <div class="about-card">
+      <h1 class="site-title">Muhammad (Ashar) Mian</h1>
+      <p class="about-text">
+        I’m a Computer Science student at Mississippi State University (Class of 2027, CS GPA 4.00) with hands-on research experience in AR safety systems, data automation, and autonomous vehicles. 
+        I love building interactive systems across robotics, AR/VR, ML, and data visualization, and I’ve led teams in campus organizations and competitive sports.
+      </p>
+      <div class="quick-contact">
+        <a href="mailto:asharmian2004@gmail.com" class="link">asharmian2004@gmail.com</a>
+        <span class="sep">|</span>
+        <a href="tel:16624978806" class="link">662-497-8806</a>
+        <span class="sep">|</span>
+        <a class="link" target="_blank" rel="noopener" href="https://github.com/Muhammadasharmian">GitHub</a>
+        <span class="sep">|</span>
+        <a class="link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/your-linkedin">LinkedIn (update)</a>
+      </div>
+      <div class="hint">Click an object to open the resume panel • Drag to orbit • Scroll to zoom • Esc to close panel</div>
+    </div>
+  </header>
 
-body {
-    background: linear-gradient(135deg, #18191a 60%, #2e0066 100%);
-    color: var(--text-main);
-    font-family: 'Share Tech Mono', 'Consolas', 'monospace';
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+  <!-- 3D Scene Container -->
+  <div id="scene-container" aria-label="Interactive 3D resume scene"></div>
 
-.neon-border {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 0;
-    pointer-events: none;
-    border: 4px solid var(--neon-pink);
-    box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-pink);
-    border-radius: 14px;
-    margin: 8px;
-}
+  <!-- Hover Tooltip -->
+  <div id="tooltip" role="tooltip" aria-hidden="true"></div>
 
-header {
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 2;
-}
+  <!-- Info Panel -->
+  <div id="info-panel" class="panel" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="panel-inner">
+      <button id="panel-close" class="panel-close" aria-label="Close panel">✕</button>
+      <div class="panel-header">
+        <div class="panel-title">
+          <span id="panel-icon">🏷️</span>
+          <h2 id="panel-heading">Resume</h2>
+        </div>
+        <div class="panel-tabs" role="tablist" aria-label="Resume Sections">
+          <button class="tab active" role="tab" aria-selected="true" data-tab="education">Education</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="experience">Experience</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="contact">Contact Me</button>
+        </div>
+      </div>
+      <div class="panel-content">
+        <section id="tab-education" class="tab-panel active" role="tabpanel"></section>
+        <section id="tab-experience" class="tab-panel" role="tabpanel"></section>
+        <section id="tab-projects" class="tab-panel" role="tabpanel"></section>
+        <section id="tab-contact" class="tab-panel" role="tabpanel"></section>
+      </div>
+    </div>
+  </div>
 
-.header-content {
-    display: inline-block;
-    background: linear-gradient(90deg, #1a1935 60%, #3e0066 100%);
-    border-radius: 12px;
-    padding: 28px 36px;
-    box-shadow: 0 0 20px var(--neon-purple);
-    border: 2px solid var(--neon-blue);
-}
+  <noscript>
+    <div class="noscript">
+      This site is interactive and requires JavaScript. Please enable JavaScript to view the 3D scene and resume.
+    </div>
+  </noscript>
 
-h1, .glitch {
-    font-family: 'Orbitron', 'Share Tech Mono', monospace;
-    font-size: 2.6rem;
-    color: var(--neon-pink);
-    text-shadow: 0 0 6px var(--neon-blue), 0 0 18px var(--neon-pink);
-    position: relative;
-    letter-spacing: 2px;
-}
-
-.glitch {
-    animation: glitch 1.2s infinite;
-}
-
-@keyframes glitch {
-    0% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink);}
-    20% { text-shadow: -2px 0 var(--neon-pink), 2px 0 var(--neon-blue);}
-    40% { text-shadow: 2px 2px var(--neon-blue), -2px -2px var(--neon-pink);}
-    60% { text-shadow: -2px 2px var(--neon-pink), 2px -2px var(--neon-blue);}
-    80% { text-shadow: 2px 0 var(--neon-blue), -2px 0 var(--neon-pink);}
-    100% { text-shadow: 0 0 6px var(--neon-blue), 0 0 18px var(--neon-pink);}
-}
-
-.cyber-contact, .cyber-link {
-    color: var(--neon-green);
-    text-shadow: 0 0 6px var(--neon-green);
-    letter-spacing: 1px;
-    font-size: 1rem;
-}
-.cyber-link {
-    text-decoration: underline;
-    transition: color 0.2s;
-}
-.cyber-link:hover {
-    color: var(--neon-pink);
-}
-
-main {
-    width: 98%;
-    max-width: 888px;
-    margin: 0 auto 50px auto;
-    z-index: 2;
-    position: relative;
-}
-
-.section-title {
-    color: var(--neon-blue);
-    text-shadow: 0 0 12px var(--neon-blue);
-    border-left: 4px solid var(--neon-pink);
-    padding-left: 12px;
-    margin-top: 36px;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 1.5px solid var(--neon-purple);
-    border-radius: 10px;
-    box-shadow: 0 0 16px var(--neon-blue);
-    margin: 18px 0;
-    padding: 18px 28px 14px 28px;
-    font-size: 1.06rem;
-    transition: box-shadow 0.3s;
-}
-.card:hover {
-    box-shadow: 0 0 32px var(--neon-pink), 0 0 12px var(--neon-blue);
-}
-
-.skill-card {
-    color: var(--neon-green);
-    text-shadow: 0 0 6px var(--neon-green);
-}
-
-ul {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-}
-.card ul li {
-    margin-bottom: 6px;
-    padding-left: 16px;
-    position: relative;
-}
-.card ul li:before {
-    content: '▸';
-    color: var(--neon-pink);
-    position: absolute;
-    left: 0;
-}
-
-.date {
-    color: var(--neon-blue);
-    text-shadow: 0 0 6px var(--neon-blue);
-    font-size: 0.95rem;
-    float: right;
-}
-
-.glow {
-    color: var(--neon-pink);
-    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-blue);
-}
-.footer-glow {
-    color: var(--neon-purple);
-    text-align: center;
-    font-size: 1.03rem;
-    margin-top: 32px;
-    text-shadow: 0 0 8px var(--neon-purple);
-}
-.cyber-heart {
-    color: var(--neon-pink);
-    text-shadow: 0 0 12px var(--neon-pink);
-}
-
-@media (max-width: 700px) {
-    .header-content, main {
-        padding: 10px;
-        width: 96vw;
-        font-size: 0.97rem;
-    }
-    .neon-border { margin: 2px; }
-}
+  <script type="module" src="script.js"></script>
+</body>
+</html>
