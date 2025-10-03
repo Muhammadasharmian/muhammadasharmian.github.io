@@ -1,74 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ashar Mian | 3D Interactive Resume</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link rel="icon" href="assets/cyberpunk-favicon.png"/>
-  <meta name="description" content="3D interactive resume of Muhammad (Ashar) Mian: education, experience, projects, and contact."/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website - Homepage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .about-section {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 2px solid #333;
+            margin-bottom: 50px;
+        }
+
+        .about-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .sport-item {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-decoration: none;
+            color: white;
+        }
+
+        .sport-item:hover {
+            transform: translateY(-10px);
+            border-color: #4ecdc4;
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
+        }
+
+        .sport-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .soccer {
+            color: #28a745;
+        }
+
+        .pingpong {
+            color: #ffc107;
+        }
+
+        .basketball {
+            color: #fd7e14;
+        }
+
+        .chess {
+            color: #6f42c1;
+        }
+
+        .sport-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sport-item p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-section h1 {
+                font-size: 2rem;
+            }
+            
+            .sports-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .sport-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="neon-border"></div>
+    <div class="container">
+        <!-- About Me Section -->
+        <section class="about-section">
+            <h1>About Me</h1>
+            <p>
+                Welcome to my world! I'm passionate about sports, strategy, and competition. 
+                Each sport below represents a different aspect of who I am - from the teamwork 
+                of soccer to the precision of chess. Click on any sport to explore that part of my journey.
+            </p>
+        </section>
 
-  <!-- About Me Overlay -->
-  <header class="about-overlay">
-    <div class="about-card">
-      <h1 class="site-title">Muhammad (Ashar) Mian</h1>
-      <p class="about-text">
-        I’m a Computer Science student at Mississippi State University (Class of 2027, CS GPA 4.00) with hands-on research experience in AR safety systems, data automation, and autonomous vehicles. 
-        I love building interactive systems across robotics, AR/VR, ML, and data visualization, and I’ve led teams in campus organizations and competitive sports.
-      </p>
-      <div class="quick-contact">
-        <a href="mailto:asharmian2004@gmail.com" class="link">asharmian2004@gmail.com</a>
-        <span class="sep">|</span>
-        <a href="tel:16624978806" class="link">662-497-8806</a>
-        <span class="sep">|</span>
-        <a class="link" target="_blank" rel="noopener" href="https://github.com/Muhammadasharmian">GitHub</a>
-        <span class="sep">|</span>
-        <a class="link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/your-linkedin">LinkedIn (update)</a>
-      </div>
-      <div class="hint">Click an object to open the resume panel • Drag to orbit • Scroll to zoom • Esc to close panel</div>
+        <!-- Sports Navigation Grid -->
+        <section class="sports-grid">
+            <a href="#soccer" class="sport-item">
+                <span class="sport-icon soccer">⚽</span>
+                <h3>Soccer</h3>
+                <p>The beautiful game of teamwork and passion</p>
+            </a>
+
+            <a href="#pingpong" class="sport-item">
+                <span class="sport-icon pingpong">🏓</span>
+                <h3>Ping Pong</h3>
+                <p>Fast reflexes and precise control</p>
+            </a>
+
+            <a href="#basketball" class="sport-item">
+                <span class="sport-icon basketball">🏀</span>
+                <h3>Basketball</h3>
+                <p>Height, speed, and strategic plays</p>
+            </a>
+
+            <a href="#chess" class="sport-item">
+                <span class="sport-icon chess">♛</span>
+                <h3>Chess</h3>
+                <p>Strategic thinking and mental warfare</p>
+            </a>
+        </section>
     </div>
-  </header>
 
-  <!-- 3D Scene Container -->
-  <div id="scene-container" aria-label="Interactive 3D resume scene"></div>
+    <script>
+        // Add smooth scrolling and interactive effects
+        document.querySelectorAll('.sport-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add a click effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
+                // You can add navigation logic here
+                const section = this.getAttribute('href').substring(1);
+                console.log(`Navigating to ${section} section`);
+                
+                // For now, just scroll to top smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-  <!-- Hover Tooltip -->
-  <div id="tooltip" role="tooltip" aria-hidden="true"></div>
+        // Add floating animation to sport icons
+        document.querySelectorAll('.sport-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                this.style.animation = 'bounce 0.6s ease-in-out';
+            });
+            
+            icon.addEventListener('animationend', function() {
+                this.style.animation = '';
+            });
+        });
 
-  <!-- Info Panel -->
-  <div id="info-panel" class="panel" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="panel-inner">
-      <button id="panel-close" class="panel-close" aria-label="Close panel">✕</button>
-      <div class="panel-header">
-        <div class="panel-title">
-          <span id="panel-icon">🏷️</span>
-          <h2 id="panel-heading">Resume</h2>
-        </div>
-        <div class="panel-tabs" role="tablist" aria-label="Resume Sections">
-          <button class="tab active" role="tab" aria-selected="true" data-tab="education">Education</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="experience">Experience</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="projects">Projects</button>
-          <button class="tab" role="tab" aria-selected="false" data-tab="contact">Contact Me</button>
-        </div>
-      </div>
-      <div class="panel-content">
-        <section id="tab-education" class="tab-panel active" role="tabpanel"></section>
-        <section id="tab-experience" class="tab-panel" role="tabpanel"></section>
-        <section id="tab-projects" class="tab-panel" role="tabpanel"></section>
-        <section id="tab-contact" class="tab-panel" role="tabpanel"></section>
-      </div>
-    </div>
-  </div>
-
-  <noscript>
-    <div class="noscript">
-      This site is interactive and requires JavaScript. Please enable JavaScript to view the 3D scene and resume.
-    </div>
-  </noscript>
-
-  <script type="module" src="script.js"></script>
+        // Add CSS animation for bounce effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes bounce {
+                0%, 20%, 60%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-20px);
+                }
+                80% {
+                    transform: translateY(-10px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>
