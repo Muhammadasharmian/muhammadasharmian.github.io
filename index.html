@@ -1,147 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad (Ashar) Mian | Cyberpunk Resume Game</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/cyberpunk-favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashar Mian | 3D Interactive Resume</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="assets/cyberpunk-favicon.png"/>
+  <meta name="description" content="3D interactive resume of Muhammad (Ashar) Mian: education, experience, projects, and contact."/>
 </head>
 <body>
-    <div class="neon-border"></div>
-    <!-- Start Screen -->
-    <div id="start-screen" class="screen active">
-        <div class="centered">
-            <h1 class="glitch" data-text="Press PLAY to Begin">Cyberpunk Resume</h1>
-            <button id="play-btn" class="game-btn play-btn">PLAY</button>
-        </div>
+  <div class="neon-border"></div>
+
+  <!-- About Me Overlay -->
+  <header class="about-overlay">
+    <div class="about-card">
+      <h1 class="site-title">Muhammad (Ashar) Mian</h1>
+      <p class="about-text">
+        I’m a Computer Science student at Mississippi State University (Class of 2027, CS GPA 4.00) with hands-on research experience in AR safety systems, data automation, and autonomous vehicles. 
+        I love building interactive systems across robotics, AR/VR, ML, and data visualization, and I’ve led teams in campus organizations and competitive sports.
+      </p>
+      <div class="quick-contact">
+        <a href="mailto:asharmian2004@gmail.com" class="link">asharmian2004@gmail.com</a>
+        <span class="sep">|</span>
+        <a href="tel:16624978806" class="link">662-497-8806</a>
+        <span class="sep">|</span>
+        <a class="link" target="_blank" rel="noopener" href="https://github.com/Muhammadasharmian">GitHub</a>
+        <span class="sep">|</span>
+        <a class="link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/your-linkedin">LinkedIn (update)</a>
+      </div>
+      <div class="hint">Click an object to open the resume panel • Drag to orbit • Scroll to zoom • Esc to close panel</div>
     </div>
-    <!-- Main Menu -->
-    <div id="main-menu" class="screen">
-        <div class="centered menu-panel">
-            <h2 class="menu-title">Main Menu</h2>
-            <button class="game-btn menu-btn" data-section="education">Education</button>
-            <button class="game-btn menu-btn" data-section="skills">Skills</button>
-            <button class="game-btn menu-btn" data-section="experience">Experience</button>
-            <button class="game-btn menu-btn" data-section="projects">Projects</button>
-            <button class="game-btn menu-btn" data-section="leadership">Leadership & Campus</button>
-            <button class="game-btn menu-btn" data-section="hobbies">Hobbies</button>
+  </header>
+
+  <!-- 3D Scene Container -->
+  <div id="scene-container" aria-label="Interactive 3D resume scene"></div>
+
+  <!-- Hover Tooltip -->
+  <div id="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <!-- Info Panel -->
+  <div id="info-panel" class="panel" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="panel-inner">
+      <button id="panel-close" class="panel-close" aria-label="Close panel">✕</button>
+      <div class="panel-header">
+        <div class="panel-title">
+          <span id="panel-icon">🏷️</span>
+          <h2 id="panel-heading">Resume</h2>
         </div>
-    </div>
-    <!-- Sections -->
-    <div id="section-education" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Education</h2>
-            <div class="card">
-                <strong>Mississippi State University</strong>, Starkville, MS <span class="date">Class of 2027</span><br>
-                <span>Bachelor of Science, Computer Science</span>
-                <ul>
-                    <li>Computer Science GPA: <span class="glow">4.00</span></li>
-                    <li>Awarded a <span class="glow">full tuition Scholarship</span> for 4 years</li>
-                </ul>
-            </div>
+        <div class="panel-tabs" role="tablist" aria-label="Resume Sections">
+          <button class="tab active" role="tab" aria-selected="true" data-tab="education">Education</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="experience">Experience</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="projects">Projects</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="contact">Contact Me</button>
         </div>
+      </div>
+      <div class="panel-content">
+        <section id="tab-education" class="tab-panel active" role="tabpanel"></section>
+        <section id="tab-experience" class="tab-panel" role="tabpanel"></section>
+        <section id="tab-projects" class="tab-panel" role="tabpanel"></section>
+        <section id="tab-contact" class="tab-panel" role="tabpanel"></section>
+      </div>
     </div>
-    <div id="section-skills" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Skills</h2>
-            <div class="card skill-card">
-                <b>Languages:</b> Python, C, C++, C#, Java, SQL, x86 assembly, MATLAB, HTML/CSS, R<br>
-                <b>Tools/Libraries:</b> Git, Linux, Angular, React, clang, Unity, Autodesk Revit, Pandas, Matplotlib<br>
-                <b>Interests:</b> Robotics, Automation, AR/VR, Data Visualization, ML, AI, Vehicles
-            </div>
-        </div>
+  </div>
+
+  <noscript>
+    <div class="noscript">
+      This site is interactive and requires JavaScript. Please enable JavaScript to view the 3D scene and resume.
     </div>
-    <div id="section-experience" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Experience</h2>
-            <div class="card">
-                <b>MSSTATE - Building Construction Science</b> <span class="date">01/2025 - Present</span><br>
-                <i>Undergraduate Research Assistant</i>
-                <ul>
-                    <li>Developed a real-time AR app for workplace safety, reducing incidents by 15%.</li>
-                    <li>Integrated health monitoring sensors for early detection, flagging risks 15% sooner.</li>
-                    <li>Built AR comm server for direct supervisor communication (50% more effective).</li>
-                    <li>Developed interactive BIM 3D models for a class of 30 students.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <b>MSSTATE - Plant and Soil Sciences</b> <span class="date">06/2024 - Present</span><br>
-                <i>Undergraduate Research Assistant</i>
-                <ul>
-                    <li>Automated data workflows with Python; cut manual time by 40%.</li>
-                    <li>Analyzed large datasets, reducing analysis time by 2-3 hours per sample.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <b>MSSTATE - EcoCAR Challenge Team</b> <span class="date">01/2024 - 01/2025</span><br>
-                <i>Student Researcher</i>
-                <ul>
-                    <li>Improved self-driving car systems using Python and Matlab (15% better response).</li>
-                    <li>Led testing and simulations to boost accuracy in real-world scenarios.</li>
-                    <li>Coordinated sensor integration for robust vehicle performance.</li>
-                    <li>Applied ML to enhance object detection and safety.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <b>TMR Consulting Private Limited, Islamabad</b> <span class="date">04/2022 - 08/2022</span><br>
-                <i>Summer Intern</i>
-                <ul>
-                    <li>Troubleshot software issues, maintaining 95% client satisfaction.</li>
-                    <li>Revamped client meeting processes, improving clarity and team comms.</li>
-                    <li>Streamlined communication protocols for transparency and collaboration.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="section-projects" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Projects</h2>
-            <div class="card">
-                <ul>
-                    <li><b>SafeConstructAR:</b> Cyber AR app for construction worker safety & OSHA compliance.</li>
-                    <li><b>CanopyCover Calculator:</b> Open-source tool for plant canopy cover analysis from images.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="section-leadership" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Leadership & Campus Involvement</h2>
-            <div class="card">
-                <ul>
-                    <li>President, PSA (Pakistan Student Association), Mississippi State University</li>
-                    <li>Team Leader, Mississippi State table tennis team</li>
-                    <li>Member, chess & Rubik's Cube clubs</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="section-hobbies" class="screen section-screen">
-        <div class="section-card">
-            <button class="back-btn game-btn">← Back</button>
-            <h2 class="section-title">Hobbies</h2>
-            <div class="card">
-                <ul>
-                    <li>Robotics & Automation</li>
-                    <li>AR/VR development</li>
-                    <li>Data Visualization</li>
-                    <li>Machine Learning & AI</li>
-                    <li>Vehicles (electric, autonomous, etc.)</li>
-                    <li>Chess, Rubik's Cube, Table Tennis</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Footer -->
-    <footer>
-        <p class="footer-glow">© 2025 Muhammad (Ashar) Mian | Designed with <span class="cyber-heart">💜</span> | Cyberpunk Game Edition</p>
-    </footer>
-    <script src="script.js"></script>
+  </noscript>
+
+  <script type="module" src="script.js"></script>
 </body>
 </html>
