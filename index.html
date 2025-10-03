@@ -2,56 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Windows XP Profile - Home Screen</title>
+  <title>Ashar XP Loading...</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="desktop">
-    <img src="assets/bliss.jpg" id="wallpaper" alt="Windows XP Wallpaper">
-    <!-- Desktop Icons -->
-    <div class="icon" style="top: 80px; left: 60px;" data-section="about">
-      <img src="assets/folder.png" alt="About Me Folder">
-      <span>About Me</span>
+  <!-- Ashar XP Loading Screen -->
+  <div id="loading-screen">
+    <div class="xp-logo">
+      <span class="ashar">Ashar</span> <span class="xp">XP</span>
     </div>
-    <div class="icon" style="top: 180px; left: 60px;" data-section="projects">
-      <img src="assets/folder.png" alt="Projects Folder">
-      <span>Projects</span>
+    <div class="loading-bar-outer">
+      <div class="loading-bar-inner" id="loading-bar"></div>
     </div>
-    <div class="icon" style="top: 280px; left: 60px;" data-section="resume">
-      <img src="assets/folder.png" alt="Resume Folder">
-      <span>Resume</span>
-    </div>
-    <div class="icon" style="top: 380px; left: 60px;" data-section="contact">
-      <img src="assets/folder.png" alt="Contact Folder">
-      <span>Contact</span>
-    </div>
-    <div class="icon" style="top: 480px; left: 60px;" data-section="blog">
-      <img src="assets/folder.png" alt="Blog Folder">
-      <span>Blog</span>
-    </div>
+    <div class="loading-text">Loading...</div>
   </div>
-  <!-- Taskbar -->
-  <div id="taskbar">
-    <div id="start-section">
-      <img src="assets/start-button.png" alt="Start" id="start-btn">
-      <span class="start-text">Start</span>
+  <!-- Windows XP Desktop (hidden until loading complete) -->
+  <div id="desktop-container" style="display:none;">
+    <div id="desktop">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Windows_XP_Bliss_wallpaper.jpg" id="wallpaper" alt="Windows XP Wallpaper">
+      <!-- Desktop Icons -->
+      <div class="icon" style="top: 80px; left: 60px;" data-section="about">
+        <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="About Me Folder">
+        <span>About Me</span>
+      </div>
+      <div class="icon" style="top: 180px; left: 60px;" data-section="projects">
+        <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Projects Folder">
+        <span>Projects</span>
+      </div>
+      <div class="icon" style="top: 280px; left: 60px;" data-section="resume">
+        <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Resume Folder">
+        <span>Resume</span>
+      </div>
+      <div class="icon" style="top: 380px; left: 60px;" data-section="contact">
+        <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Contact Folder">
+        <span>Contact</span>
+      </div>
+      <div class="icon" style="top: 480px; left: 60px;" data-section="blog">
+        <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Blog Folder">
+        <span>Blog</span>
+      </div>
     </div>
-    <div id="taskbar-space"></div>
-    <div id="taskbar-clock">
-      <span id="time"></span>
+    <!-- Taskbar -->
+    <div id="taskbar">
+      <div id="start-section">
+        <img src="https://static.thenounproject.com/png/16793-200.png" alt="Start" id="start-btn">
+        <span class="start-text">Start</span>
+      </div>
+      <div id="taskbar-space"></div>
+      <div id="taskbar-clock">
+        <span id="time"></span>
+      </div>
     </div>
   </div>
   <script>
+    // Loading screen animation
+    let progress = 0;
+    const bar = document.getElementById('loading-bar');
+    function animateBar() {
+      progress += Math.random() * 6 + 2;
+      if(progress > 100) progress = 100;
+      bar.style.width = progress + '%';
+      if(progress < 100) {
+        setTimeout(animateBar, 120);
+      } else {
+        setTimeout(() => {
+          document.getElementById('loading-screen').style.display = 'none';
+          document.getElementById('desktop-container').style.display = 'block';
+        }, 700);
+      }
+    }
+    animateBar();
+
+    // XP taskbar live clock
     function updateTime() {
       const now = new Date();
       let hours = now.getHours();
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const ampm = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12 || 12;
-      document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
+      const timeElem = document.getElementById('time');
+      if (timeElem) timeElem.textContent = `${hours}:${minutes} ${ampm}`;
     }
-    updateTime();
     setInterval(updateTime, 1000);
+    // Run once after desktop shows
+    setTimeout(updateTime, 3200);
   </script>
 </body>
 </html>
