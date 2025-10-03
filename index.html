@@ -10,36 +10,48 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Windows_XP_Bliss_wallpaper.jpg" id="wallpaper" alt="Windows XP Wallpaper">
     <!-- Desktop Icons -->
     <div class="icon" style="top: 80px; left: 60px;" data-section="about">
-      <img src="assets/folder.png" alt="About Me Folder">
+      <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="About Me Folder">
       <span>About Me</span>
     </div>
     <div class="icon" style="top: 180px; left: 60px;" data-section="projects">
-      <img src="assets/folder.png" alt="Projects Folder">
+      <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Projects Folder">
       <span>Projects</span>
     </div>
     <div class="icon" style="top: 280px; left: 60px;" data-section="resume">
-      <img src="assets/folder.png" alt="Resume Folder">
+      <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Resume Folder">
       <span>Resume</span>
     </div>
     <div class="icon" style="top: 380px; left: 60px;" data-section="contact">
-      <img src="assets/folder.png" alt="Contact Folder">
+      <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Contact Folder">
       <span>Contact</span>
     </div>
     <div class="icon" style="top: 480px; left: 60px;" data-section="blog">
-      <img src="assets/folder.png" alt="Blog Folder">
+      <img src="https://icons.iconarchive.com/icons/icojam/blue-bits/256/folder-icon.png" alt="Blog Folder">
       <span>Blog</span>
     </div>
   </div>
   <!-- Taskbar -->
   <div id="taskbar">
     <div id="start-section">
-      <img src="assets/start-button.png" alt="Start" id="start-btn">
+      <img src="https://static.thenounproject.com/png/16793-200.png" alt="Start" id="start-btn">
       <span class="start-text">Start</span>
     </div>
     <div id="taskbar-space"></div>
     <div id="taskbar-clock">
-      <span id="time">2:26 AM</span>
+      <span id="time"></span>
     </div>
   </div>
+  <script>
+    function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
+      document.getElementById('time').textContent = `${hours}:${minutes} ${ampm}`;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
 </body>
 </html>
